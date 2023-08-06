@@ -18,7 +18,7 @@ const SmoothieCard: React.FC<SmoothieCardProps> = ( { smoothie }) => {
     return (
         <div className="smoothie-card">
             <h3>{smoothie.title}</h3>
-            <p>{smoothie.allergen}</p>
+            <p>{smoothie.allergen.join(', ')}</p>
             <p>{smoothie.ingredients}</p>
             <div className="rating">{smoothie.rating}</div>
         </div>
