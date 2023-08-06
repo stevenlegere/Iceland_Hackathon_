@@ -2,7 +2,9 @@ import supabase from '../config/supabaseClient';
 import { useEffect, useState } from 'react';
 import '../index.css';
 // Components
+import NavBar from '../components/NavBar';
 import SmoothieCard from '../components/SmoothieCard';
+
 
 interface Smoothie {
     id: number;
@@ -12,7 +14,8 @@ interface Smoothie {
     ingredients: string[];
 }
 
-const Home = () => {
+const Home: React.FC = () => {
+    <NavBar />
     console.log(supabase);
     const [fetchError, setFetchError] = useState<string | null>(null);
     const [smoothies, setSmoothies] = useState<Smoothie[] | null>(null);
@@ -52,7 +55,7 @@ const Home = () => {
             <div className="smoothies">
               {/* Add checkboxes for each allergen */}
               <div className="allergen-filter">
-                {['gluten', 'nuts', 'dairy', 'soy'].map((allergen) => {
+                {['gluten', 'nuts', 'peanuts', 'milk', 'soy', 'egg', 'sesame',].map((allergen) => {
                   const prefixedAllergen = `no ${allergen}`;
                   return (
                     <label key={allergen}>

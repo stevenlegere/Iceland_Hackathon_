@@ -18,6 +18,13 @@ code {
   --primary: #12bca2;
   --secondary: #6d15df;
 }
+
+.navbar {
+  background: var(--primary);
+  padding: 10px 20px;
+  text-align: center;
+}
+
 h1,h2,h3 {
   margin: 0;
 }
