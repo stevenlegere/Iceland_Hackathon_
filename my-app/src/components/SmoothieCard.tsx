@@ -1,4 +1,5 @@
 import React from 'react';
+import '../index.css';
 
 interface Smoothie {
     id: number;
@@ -22,6 +23,7 @@ const SmoothieCard: React.FC<SmoothieCardProps> = ( { smoothie }) => {
             <p>{smoothie.rating}</p>
             <p>{smoothie.allergen}</p>
             <p>{smoothie.ingredients}</p>
+            <div className="rating">{smoothie.rating}</div>
         </div>
     )
 }

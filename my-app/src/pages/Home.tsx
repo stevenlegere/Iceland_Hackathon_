@@ -1,5 +1,6 @@
  import supabase from '../config/supabaseClient';
  import { useEffect, useState } from 'react';
+ import '../index.css';
  // Components
  import SmoothieCard from '../components/SmoothieCard';
 
@@ -44,7 +45,7 @@
       {smoothies && (
         <div className="smoothies">
             {/* order-by buttons */}
-        <div className="smoothies-grid">
+        <div className="smoothie-grid">
         {smoothies.map(smoothie => (
             <SmoothieCard key={smoothie.id} smoothie={smoothie} />
         
