@@ -47,37 +47,38 @@ const Home = () => {
 
     return (
         <div className="page home">
-            {fetchError && (<p>{fetchError}</p>)}
-            {smoothies && (
-                <div className="smoothies">
-                    {/* order-by buttons */}
-                    {/* Add checkboxes for allergen */}
-                    <div className="allergen-filter">
-                        {['gluten', 'nuts', 'dairy', 'soy'].map((allergen) => (
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    value={allergen}
-                                    checked={selectedAllergens.includes(allergen)}
-                                    onChange={() => handleAllergensChange(allergen)}
-                                />
-                                {allergen.charAt(0).toUpperCase() + allergen.slice(1)}
-                            </label>
-                        ))}
-                    </div>
-                    <div className="smoothie-grid">
-                        {smoothies
-                            .filter((smoothie) => selectedAllergens.every((allergen) => smoothie.allergen.includes(allergen)))
-                            .map((smoothie) => (
-                                <SmoothieCard key={smoothie.id} smoothie={smoothie} />
-
-                            ))}
-                    </div>
-
-                </div>
-            )}
+          {fetchError && <p>{fetchError}</p>}
+          {smoothies && (
+            <div className="smoothies">
+              {/* Add checkboxes for each allergen */}
+              <div className="allergen-filter">
+                {['gluten', 'nuts', 'dairy', 'soy'].map((allergen) => {
+                  const prefixedAllergen = `no ${allergen}`;
+                  return (
+                    <label key={allergen}>
+                      <input
+                        type="checkbox"
+                        value={allergen}
+                        checked={selectedAllergens.includes(allergen)}
+                        onChange={() => handleAllergensChange(allergen)}
+                      />
+                      {prefixedAllergen.charAt(0).toUpperCase() + prefixedAllergen.slice(1)}
+                    </label>
+                  );
+                })}
+              </div>
+              {/* Filter smoothies based on selected allergens */}
+              <div className="smoothie-grid">
+                {smoothies
+                  .filter((smoothie) => !selectedAllergens.some((allergen) => smoothie.allergen.includes(allergen)))
+                  .map((smoothie) => (
+                    <SmoothieCard key={smoothie.id} smoothie={smoothie} />
+                  ))}
+              </div>
+            </div>
+          )}
         </div>
-    );
-};
-
-export default Home;  
+      );
+    };
+    
+    export default Home;
